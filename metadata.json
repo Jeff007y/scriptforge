@@ -1,0 +1,6 @@
+{
+  "name": "ScriptForge",
+  "description": "Professional Screenplay Platform",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

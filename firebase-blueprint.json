@@ -1,0 +1,55 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile data",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["email", "createdAt"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "Screenplay project metadata",
+      "type": "object",
+      "properties": {
+        "ownerId": { "type": "string" },
+        "title": { "type": "string" },
+        "logline": { "type": "string" },
+        "createdAt": { "type": "string", "description": "ISO timestamp" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp" }
+      },
+      "required": ["ownerId", "title", "createdAt", "updatedAt"]
+    },
+    "ScriptBlock": {
+      "title": "ScriptBlock",
+      "description": "A block of a screenplay",
+      "type": "object",
+      "properties": {
+        "projectId": { "type": "string" },
+        "type": { "type": "string", "enum": ["scene_heading", "action", "character", "dialogue", "parenthetical", "transition"] },
+        "content": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["projectId", "type", "content", "order"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "User" },
+      "description": "Stores user profiles."
+    },
+    "/projects/{projectId}": {
+      "schema": { "$ref": "Project" },
+      "description": "Stores project metadata."
+    },
+    "/projects/{projectId}/blocks/{blockId}": {
+      "schema": { "$ref": "ScriptBlock" },
+      "description": "Stores individual script blocks for a project."
+    }
+  }
+}
